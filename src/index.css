@@ -1,0 +1,86 @@
+@import 'tailwindcss';
+
+/* Mode sombre piloté par la classe .dark sur <html> (auto / clair / sombre). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Palette « nature » : tons sable, sauge, terre.
+ * Les couleurs sont des variables CSS qui changent en mode sombre,
+ * puis exposées à Tailwind (bg-surface, text-ink, text-sage…).
+ */
+:root {
+  --c-bg: #f6f3ec;
+  --c-surface: #fffdf8;
+  --c-surface-2: #ece7dc;
+  --c-ink: #2f3a33;
+  --c-ink-soft: #6b756d;
+  --c-line: #e1dbcd;
+  --c-sage: #5f7a61;
+  --c-sage-soft: #dfe7dc;
+  --c-clay: #c08a6a;
+  --c-clay-soft: #f2e2d6;
+  --c-sky: #7b98a8;
+  --c-sky-soft: #dde8ec;
+}
+
+.dark {
+  --c-bg: #1b1f1c;
+  --c-surface: #232925;
+  --c-surface-2: #2c332e;
+  --c-ink: #e8e6df;
+  --c-ink-soft: #a3aaa2;
+  --c-line: #353d37;
+  --c-sage: #94b496;
+  --c-sage-soft: #2e3b30;
+  --c-clay: #d7a587;
+  --c-clay-soft: #3d3029;
+  --c-sky: #a3bfcc;
+  --c-sky-soft: #2a363b;
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
+  --color-ink: var(--c-ink);
+  --color-ink-soft: var(--c-ink-soft);
+  --color-line: var(--c-line);
+  --color-sage: var(--c-sage);
+  --color-sage-soft: var(--c-sage-soft);
+  --color-clay: var(--c-clay);
+  --color-clay-soft: var(--c-clay-soft);
+  --color-sky: var(--c-sky);
+  --color-sky-soft: var(--c-sky-soft);
+
+  --font-sans: 'Nunito', ui-rounded, 'SF Pro Rounded', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+
+  --animate-fade-in: fade-in 700ms ease-out both;
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+html {
+  background-color: var(--c-bg);
+  color: var(--c-ink);
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 600ms ease, color 600ms ease;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background-color: var(--c-bg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}
