@@ -3,9 +3,11 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
+const BASE = '/Reconnections-/';
+
 export default defineConfig({
-  // Chemins relatifs : fonctionne aussi bien sur Netlify que sur GitHub Pages.
-  base: './',
+  // Adresse de publication : https://nanashiia.github.io/Reconnections-/
+  base: BASE,
   server: { host: true },
   preview: { host: true },
   plugins: [
@@ -19,8 +21,9 @@ export default defineConfig({
         short_name: 'Reconnexion',
         description: 'Se reconnecter à soi, corps et esprit.',
         lang: 'fr',
-        start_url: './',
-        scope: './',
+        id: BASE,
+        start_url: BASE,
+        scope: BASE,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#f6f3ec',

@@ -10,7 +10,7 @@ Application purement personnelle pour me reconnecter à moi-même, mentalement e
 - Données stockées uniquement sur l'appareil (IndexedDB via Dexie), avec export/import JSON pour sauvegarder
 - Interface entièrement en français
 - Ambiance : calme, douce, épurée, couleurs naturelles, animations lentes, mode sombre
-- Hébergement gratuit (GitHub Pages ou Netlify), à faire en fin de projet
+- Hébergement gratuit sur GitHub Pages : https://nanashiia.github.io/Reconnections-/ (déployé automatiquement à chaque push)
 
 ## Fonctionnalités
 ### Mental
@@ -35,12 +35,16 @@ Application purement personnelle pour me reconnecter à moi-même, mentalement e
 - Bilan de la semaine généré automatiquement
 
 ## Façon de travailler
-- Une étape à la fois. À la fin de chaque étape : vérifier que tout compile et fonctionne, puis me résumer simplement ce qui a été fait et comment le tester sur mon téléphone.
+- Une étape à la fois. À la fin de chaque étape : vérifier que tout compile et fonctionne, pousser sur la branche, puis me résumer simplement ce qui a été fait et comment le tester sur mon téléphone.
+- Je teste l'appli sur mon téléphone via l'adresse en ligne https://nanashiia.github.io/Reconnections-/ (pas en local). Les instructions de test doivent donc partir de cette adresse.
 - Je ne suis pas développeur : explique en termes simples quand tu as besoin d'une décision de ma part.
 - Code propre, organisé par fonctionnalité.
 
 ## Notes techniques (pour Claude)
-- `npm run dev` : serveur de dev accessible sur le réseau local (`host: true`).
+- Déploiement : `.github/workflows/deploy.yml` build et publie sur GitHub Pages à chaque push sur `main` ou `claude/**` (le dernier push gagne, il n'y a qu'un seul site).
+- Chemin de base Vite : `/Reconnections-/` (constante `BASE` dans `vite.config.ts`, utilisée aussi pour le manifest PWA ; le service worker suit automatiquement).
+- Après un déploiement, le service worker (`autoUpdate`) peut servir l'ancienne version une fois : fermer/rouvrir l'appli pour voir la nouvelle.
+- `npm run dev` : serveur de dev local (`host: true`), utile pour Claude, pas pour les tests de l'utilisateur.
 - `npm run build` : vérification TypeScript + build de production (PWA générée par `vite-plugin-pwa`).
 - Navigation : `HashRouter` (compatible GitHub Pages sans configuration serveur).
 - Base locale : `src/db/db.ts` (Dexie). Toute modification du schéma = nouvelle `version()` Dexie, ne jamais modifier une version existante.
